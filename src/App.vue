@@ -2,12 +2,13 @@
 </script>
 
 <template>
-  <div>Hello</div>
+  <Hello name="Jerry" />
 </template>
 
 <style>
 html {
   background: #222;
   color: white;
+  color-scheme: dark;
 }
 </style>
