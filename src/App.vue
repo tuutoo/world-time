@@ -2,7 +2,10 @@
 </script>
 
 <template>
-  <Hello name="Jerry" />
+  <div border="~ gray/20" m2>
+    <ActionBar />
+    <TimeScheduler />
+  </div>
 </template>
 
 <style>
