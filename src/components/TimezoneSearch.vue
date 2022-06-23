@@ -24,7 +24,7 @@ function add(t: Timezone) {
     <input
       v-model="input" type="text" placeholder="Search timezone..."
       px2 py1 w-full
-      border="~ gray/20 rounded"
+      border="~ base rounded"
       bg-transparent
     >
     <div v-show="input" absolute top-full bg-gray-800 left-0 right-0>

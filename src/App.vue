@@ -2,14 +2,15 @@
 </script>
 
 <template>
-  <div border="~ gray/20" m2>
+  <div border="~ base" m2>
+    <DarkSwitcher />
     <ActionBar />
     <TimeScheduler />
   </div>
 </template>
 
 <style>
-html {
+html.dark {
   background: #222;
   color: white;
   color-scheme: dark;

@@ -18,6 +18,7 @@ export default defineConfig({
       imports: [
         'vue',
         'vue/macros',
+        '@vueuse/core',
       ],
       dirs: [
         './src/composables',
@@ -25,6 +26,9 @@ export default defineConfig({
       vueTemplate: true,
     }),
     UnoCSS({
+      shortcuts: {
+        'border-base': 'border-gray/20 dark:border-gray/15',
+      },
       presets: [presetUno(), presetAttributify(), presetIcons()],
     }),
   ],
