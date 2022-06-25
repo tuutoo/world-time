@@ -38,13 +38,13 @@ function onKeyDown(e: KeyboardEvent) {
       @keydown="onKeyDown"
     >
     <div
-      v-show="input" absolute top-full left-0 right-0
-      p1 border="~ base" bg-base max-h-100 overflow-auto
+      v-show="input" absolute top-full left-0 right-0 z-10
+      p1 border="~ base rounded" shadow bg-base max-h-100 overflow-auto
     >
       <button
         v-for="i, idx of searchResult"
-        :key="i.refIndex"
-        block w-full :class="idx === index ? 'bg-gray:15' : '' "
+        :key="i.refIndex" block w-full px2
+        :class="idx === index ? 'bg-gray:15' : '' "
         @click="add(i.item)"
       >
         <TimezoneItem :timezone="i.item" />
