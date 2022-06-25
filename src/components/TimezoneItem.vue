@@ -5,14 +5,22 @@ const { timezone } = defineProps<{
   timezone: Timezone
 }>()
 
+const formatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: timezone.name,
+  hour12: false,
+  hour: 'numeric',
+  minute: 'numeric',
+})
+
 const state = $computed(() => timezone.name.split('/')[0])
 const city = $computed(() => timezone.name.split('/')[1])
 const offset = $computed(() => timezone.offset > 0 ? `+${timezone.offset}` : timezone.offset)
+const time = $computed(() => formatter.format(now.value))
 </script>
 
 <template>
   <div>
-    <button flex gap2>
+    <div flex gap2 py1>
       <div w-8 ma op80 font-bold>
         {{ offset }}
       </div>
@@ -24,6 +32,7 @@ const offset = $computed(() => timezone.offset > 0 ? `+${timezone.offset}` : tim
           {{ state }}
         </div>
       </div>
-    </button>
+      <div> {{ time }} </div>
+    </div>
   </div>
 </template>
