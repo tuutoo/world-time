@@ -5,34 +5,49 @@ const { timezone } = defineProps<{
   timezone: Timezone
 }>()
 
-const formatter = new Intl.DateTimeFormat('en-US', {
+const timeFormatter = new Intl.DateTimeFormat('en-US', {
   timeZone: timezone.name,
   hour12: false,
   hour: 'numeric',
   minute: 'numeric',
 })
 
-const state = $computed(() => timezone.name.split('/')[0])
-const city = $computed(() => timezone.name.split('/')[1])
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: timezone.name,
+  weekday: 'short',
+  month: 'short',
+  day: '2-digit',
+})
+
+const state = $computed(() => timezone.name.split('/')[0].replace(/_/g, ' '))
+const city = $computed(() => timezone.name.split('/')[1]?.replace(/_/g, ' ') || '')
 const offset = $computed(() => timezone.offset > 0 ? `+${timezone.offset}` : timezone.offset)
-const time = $computed(() => formatter.format(now.value))
+const time = $computed(() => timeFormatter.format(now.value))
+const date = $computed(() => dateFormatter.format(now.value))
 </script>
 
 <template>
   <div>
-    <div flex gap2 py1>
+    <div flex flex-wrap gap2 py1>
       <div w-8 ma op80 font-bold>
         {{ offset }}
       </div>
       <div flex="~ col" text-left flex-auto>
-        <div text-xl>
-          {{ city }}
+        <div>
+          <span of-hidden text-ellipsis mr1>{{ city }}</span>
+          <sup border="~ base rounded" px1>{{ timezone.abbr }}</sup>
         </div>
         <div text-sm op50 leading-1em>
           {{ state }}
         </div>
       </div>
-      <div> {{ time }} </div>
+      <div flex="~ col" text-right flex-auto>
+        <div> {{ time }} </div>
+        <div text-sm op50 leading-1em>
+          {{ date }}
+        </div>
+      </div>
+      <slot />
     </div>
   </div>
 </template>

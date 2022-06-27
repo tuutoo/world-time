@@ -7,7 +7,9 @@
       v-for="zone, idx of zones.value" :key="zone.name"
       px4 py2 border="b base" relative
     >
-      <TimezoneItem :timezone="zone" />
+      <TimezoneItem :timezone="zone">
+        <TimeDial :timezone="zone" />
+      </TimezoneItem>
       <div absolute left="-5" top-0 bottom-0 text-xl flex="~ col" justify-center>
         <button
           icon-btn m--1px i-carbon-close
