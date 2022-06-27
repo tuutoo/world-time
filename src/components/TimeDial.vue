@@ -36,7 +36,7 @@ function isNight(h: number) {
           v-for="i in day"
           :key="i"
           flex="~ col none"
-          w7 h8 px="0.5"
+          w7 h8 flex-none
           items-center justify-center
           :class="[
             isMidnight(i) ? 'bg-sky7:70 text-white'

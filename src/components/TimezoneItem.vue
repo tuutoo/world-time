@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { homeOffset } from '../composables/state'
 import type { Timezone } from '~/types'
 
 const { timezone } = defineProps<{
@@ -21,7 +22,10 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 
 const state = $computed(() => timezone.name.split('/')[0].replace(/_/g, ' '))
 const city = $computed(() => timezone.name.split('/')[1]?.replace(/_/g, ' ') || '')
-const offset = $computed(() => timezone.offset > 0 ? `+${timezone.offset}` : timezone.offset)
+const offset = $computed(() => {
+  const offset = timezone.offset - homeOffset.value
+  return offset > 0 ? `+${offset}` : offset
+})
 const time = $computed(() => timeFormatter.format(now.value))
 const date = $computed(() => dateFormatter.format(now.value))
 </script>
@@ -29,7 +33,10 @@ const date = $computed(() => dateFormatter.format(now.value))
 <template>
   <div>
     <div flex flex-wrap gap2 py1>
-      <div w-8 ma op80 font-bold>
+      <div
+        w-8 ma op80 font-bold text-center
+        :title="`${timezone.offset} GMT`"
+      >
         {{ offset }}
       </div>
       <div flex="~ col" text-left flex-auto>
