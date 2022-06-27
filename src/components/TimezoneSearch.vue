@@ -12,6 +12,15 @@ const searchResult = $computed(() => {
   return fuse.search(input)
 })
 
+const modal = ref<HTMLDivElement>()
+
+onClickOutside(modal, () => {
+  if (input) {
+    input = ''
+    index = 0
+  }
+})
+
 function add(t: Timezone) {
   addToTimezone(t)
   input = ''
@@ -38,12 +47,15 @@ function onKeyDown(e: KeyboardEvent) {
       @keydown="onKeyDown"
     >
     <div
-      v-show="input" absolute top-full left-0 right-0 z-10
+      v-show="input"
+      ref="modal"
+      absolute top-full left-0 right-0 z-10
       p1 border="~ base rounded" shadow bg-base max-h-100 overflow-auto
     >
       <button
         v-for="i, idx of searchResult"
-        :key="i.refIndex" block w-full px2
+        :key="i.refIndex" block w-full px2 pb1 hover="bg-gray/5"
+        border="~ base"
         :class="idx === index ? 'bg-gray:15' : '' "
         @click="add(i.item)"
       >

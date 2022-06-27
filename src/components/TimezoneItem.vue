@@ -32,7 +32,7 @@ const date = $computed(() => dateFormatter.format(now.value))
 
 <template>
   <div>
-    <div flex flex-wrap gap2 py1>
+    <div flex flex-wrap gap3 py1>
       <div
         w-8 ma op80 font-bold text-center
         :title="`${timezone.offset} GMT`"
