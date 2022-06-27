@@ -47,6 +47,10 @@ export function moveZone(timezone: Timezone, delta: 1 | -1) {
   zoneNames.value[index] = other
 }
 
+export function setHomeZone(timezone: Timezone) {
+  homeZone.value = timezone.name
+}
+
 if (!zones.value?.length)
   zoneNames.value = [userTimezone]
 

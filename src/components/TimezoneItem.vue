@@ -37,7 +37,10 @@ const date = $computed(() => dateFormatter.format(now.value))
         w-8 ma op80 font-bold text-center
         :title="`${timezone.offset} GMT`"
       >
-        {{ offset }}
+        <div v-if="timezone.name === homeZone.value" i-ri-home-2-fill ma op50 />
+        <div v-else>
+          {{ offset }}
+        </div>
       </div>
       <div flex="~ col" text-left flex-auto>
         <div>
