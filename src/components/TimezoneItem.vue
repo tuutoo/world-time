@@ -31,8 +31,8 @@ const date = $computed(() => dateFormatter.format(now.value))
 </script>
 
 <template>
-  <div>
-    <div flex flex-wrap gap3 py1>
+  <div flex="~ col md:row" gap3 py1>
+    <div flex="~ wrap" gap3>
       <div
         w-8 ma op80 font-bold text-center
         :title="`${timezone.offset} GMT`"
@@ -42,7 +42,7 @@ const date = $computed(() => dateFormatter.format(now.value))
           {{ offset }}
         </div>
       </div>
-      <div flex="~ col" text-left flex-auto>
+      <div flex="~ col" text-left flex-auto w-30>
         <div>
           <span of-hidden text-ellipsis mr1>{{ city }}</span>
           <sup border="~ base rounded" px1>{{ timezone.abbr }}</sup>
@@ -53,7 +53,7 @@ const date = $computed(() => dateFormatter.format(now.value))
       </div>
       <div flex="~ col" text-right flex-auto>
         <div> {{ time }} </div>
-        <div text-sm op50 leading-1em>
+        <div text-sm op50 leading-1em w-25>
           {{ date }}
         </div>
       </div>
